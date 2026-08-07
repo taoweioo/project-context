@@ -1,0 +1,46 @@
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 编辑器和 IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 本地环境变量和密钥
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# 依赖目录
+node_modules/
+
+# 构建产物、测试覆盖率和缓存
+dist/
+build/
+coverage/
+.next/
+.nuxt/
+.turbo/
+.cache/
+
+# Python 本地环境和缓存
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 日志和临时文件
+*.log
+logs/
+tmp/
+temp/
+.tmp/
+
+# 本地文档和参考资料
+docs/
