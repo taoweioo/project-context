@@ -10,7 +10,7 @@
 
 适合记录：技术栈、包管理工具、常用命令、目录约定、环境配置、构建配置、Lint、格式化和样式体系。
 
-初始化时必须创建：`project/project-baseline/SKILL.md`。
+初始化时必须创建：`.agents/skills/ctx-project-baseline/SKILL.md`。
 
 ### architecture
 
