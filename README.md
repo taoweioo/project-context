@@ -22,29 +22,59 @@ npx skills update project-context -p
 
 ## 核心概念
 
-### 上下文单元
+### 分类级上下文
 
-一个 `ctx-*` 是一个完整 skill，保存一个明确职责边界内的长期项目知识。`SKILL.md` 是必需入口，包含触发条件、负责范围、关键入口、核心约束和证据。
+项目使用少量分类级 skill，而不是为每个页面或功能创建独立 skill：
 
-完整 skill 可以按实际需要拥有 `references/`、`scripts/`、`assets/`、模板或其他资源；本项目只对 `ctx-*` 中与长期上下文有关的资源制定维护规则。
+```text
+.agents/skills/
+├── ctx-project-baseline/
+├── ctx-architecture/
+├── ctx-modules/
+├── ctx-capabilities/
+├── ctx-contracts/
+├── ctx-integrations/
+├── ctx-policies/
+└── ctx-other/
+```
+
+每个固定分类最多对应一个顶层 skill；只有存在通过长期保留判断的内容时才创建。`ctx-other` 只承载已确认需要保留、但经过职责拆分和主要加载原因判断后仍不属于现有分类的内容。旧版 `ctx-<分类>-<主题>` 可以继续读取，并通过用户确认的结构调整逐类迁移。
+
+### SKILL.md 是语义路由入口
+
+分类级 `SKILL.md` 包含触发边界、负责范围、分类共同约束和内部 reference 索引。索引必须说明“什么任务或代码信号读取哪个文件”，不能只是文件名列表。
+
+```md
+## 按需读取
+
+| 任务或代码信号 | 读取 |
+| --- | --- |
+| 登录、登出、session 或路由守卫 | [认证与会话](./references/auth-session.md) |
+| Server Component、`"use client"` 或 hydration | [Server/Client 边界](./references/server-client-boundaries.md) |
+```
+
+Codex 只读取与当前任务匹配的 reference；任务跨越多个主题时，`SKILL.md` 还应说明组合读取条件。
 
 ### 内部 references
 
-`references/` 是可选的 skill 内部资源目录，不是项目级文档库，也不是完整 skill 的另一半。
+`references/` 承载分类内仅特定任务需要的长期知识，不是项目级文档库。
 
-仅当复杂知识不能安全压缩进 `SKILL.md`、仍属于同一职责边界、需要连续理解并有证据和明确读取条件时，才写入其中。典型内容包括状态机、复杂流程、决策表、跨文件关系和完整事故因果。
+仅当知识具有明确读取条件、不读取会影响后续判断、属于当前固定分类并有可靠证据时，才写入其中。典型内容包括模块流程、状态机、复杂决策、跨文件关系、特定集成约束和字段语义。
 
-`SKILL.md` 必须说明何时读取哪份 reference；reference 默认只服务所属 skill。若多个 skill 都需要同一知识，应重新划分职责，而不是跨 skill 共用私有 reference。
+每个 reference 必须从所属 `SKILL.md` 的语义路由直接到达；孤立文件、模糊的“需要时读取”和默认加载全部 reference 都不符合目标设计。
 
 ## 核心原则
 
-- 每个 `ctx-*` 只负责一个明确的加载原因，按需加载。
-- 已有职责匹配的 skill 优先更新，不创建重复单元。
-- `SKILL.md` 保留立即影响修改决策的结论；reference 只补充无法安全压缩的连续关系。
+- 每个固定分类最多一个顶层 `ctx-*` skill，不按页面、功能、文件或代码目录创建顶层 skill。
+- `SKILL.md` 保留分类共同约束并负责路由；reference 保存分类内按需主题知识。
+- 已有职责匹配的分类 skill 或 reference 优先更新，不创建重复位置。
+- 已确认需要保留的内容必须给出分类意见；无法归入现有分类时使用 `ctx-other`，不因分类困难长期待确认。
+- 待确认只用于证据不足、规则冲突、用户意图不明确或多个权威位置冲突，不能通过 `ctx-other` 绕过。
 - 每条重要规则有代码、配置、项目指令或用户明确说明作为依据。
 - 用户明确要求长期保留的规则记录来源、日期和状态，不由代码观察自动覆盖。
 - 不沉淀一眼可见的实现、临时调试信息、通用教程、大段源码或未经确认的猜测。
-- 普通代码任务结束后，不自动检查或更新上下文；只有用户明确要求时才维护。
+- 普通代码任务结束后不自动检查或更新上下文；只有用户明确要求时才维护。
+- 合并、移动、重命名或删除旧结构前，先输出计划并等待确认。
 
 ## 使用方式
 
@@ -53,9 +83,9 @@ npx skills update project-context -p
 
 根据这次 git diff 更新持久化上下文。
 
-把导出任务的状态机作为对应 ctx skill 的内部 reference 记录下来。
+把同分类的旧 ctx skill 合并到分类级 skill，并建立 reference 路由。
 
-审计现有 ctx-* skill 及其内部 references 是否过期、重复或存在误导。
+审计现有 ctx-* 的分类、语义路由和内部 references。
 ```
 
 实际创建或修改 `ctx-*` skill 及其内部资源时，skill 会额外输出：
