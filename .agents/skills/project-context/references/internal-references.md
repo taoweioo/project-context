@@ -1,10 +1,14 @@
-# ctx skill 内部 references 规则
+# ctx skill 内部 reference 规则
+
+本规则只在 [选择规则](./selection.md) 已确定内容归属某个 `ctx-*` 后按需使用，或在审计时核对已有内部 reference。它不判断候选内容是否应长期保留。
 
 `references/` 是可选的 skill 内部资料目录。它只承载同一职责边界内、不能安全压缩进 `SKILL.md` 的信息；不定义完整 skill 结构，也不是项目级文档库。
 
 ## 准入判断
 
 新增或明显扩展 reference 前，先尝试把知识压缩为 `SKILL.md` 中的职责说明、高价值入口、独立事实与约束，以及必要证据。
+
+用户明确要求创建或维护内部 reference 时，进入本判断，但不自动通过准入。
 
 只有同时满足以下条件，才创建或更新 reference：
 
@@ -38,5 +42,5 @@
 - 更新 `SKILL.md` 的事实或约束时，检查引用的 reference 是否仍一致；只修改受影响内容。
 - 需要重复执行且必须确定结果的操作，应评估 `scripts/`，不要把可执行流程伪装成 reference。
 - 会成为交付物的模板、图片或代码骨架，应评估 `assets/`，不要作为 instructions 加载。
-- 移动、重命名、拆分、合并或删除 reference 属于所属 skill 的结构调整，按 `reorganization.md` 先规划并等待确认。
+- 移动、重命名、拆分、合并或删除 reference 属于所属 skill 的结构调整，按 [结构调整规则](./structural-changes.md) 先规划并等待确认。
 - 审计时检查路径、读取条件、职责归属、准入判断、结论与证据；不检查或维护 `docs/`。
