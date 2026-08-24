@@ -36,7 +36,7 @@
 
 1. 已有唯一职责匹配的 `ctx-*` skill 时，更新该 skill。
 2. 属于全项目工程事实或基础约定，且没有独立加载原因时，写入 `ctx-project-baseline`。
-3. 不属于既有职责或项目基础，并且具有稳定、独立的加载原因时，创建新的 `ctx-*` skill。
+3. 不属于任何既有职责、不适合写入 `ctx-project-baseline`，并且具有稳定、独立的加载原因时，创建新的 `ctx-*` skill。
 4. 同时匹配多个 skill、无法稳定归类或没有独立加载原因时，列入待确认，不创建重复 skill。
 
 新建 skill 时，读取 [分类规则](./taxonomy.md) 确定分类和名称，再读取 [结构规则](./template.md) 确定结构和内容分工。已确定写入某个 `ctx-*` 且内容无法安全压缩进 `SKILL.md` 时，再读取 [内部 reference 规则](./internal-references.md)。
