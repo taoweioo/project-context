@@ -21,15 +21,15 @@
 
 ## 旧 skill 合并到分类级 skill
 
-将旧版 `ctx-<分类>-<主题>` 合并到 `ctx-<分类>` 时：
+将旧版 `ctx-<分类>-<主题>` 合并到分类级 skill 时，必须先排除规范入口 `ctx-project-baseline`。`project` 的目标固定为 `ctx-project-baseline`，其他分类的目标为 `ctx-<分类>`。
 
-1. 枚举同分类的全部旧 skill、内部 resource、相互链接和用户已有改动。
+1. 枚举同分类的全部旧 skill、内部 resource、相互链接和用户已有改动；不得把 `ctx-project-baseline` 计入旧 skill。
 2. 使用 `selection.md` 为每项内容确定保留状态和唯一分类；不把整份旧文件不加判断地搬运。
 3. 按 [结构规则](./template.md) 把分类共同约束放入目标 `SKILL.md`，按 [内部 reference 规则](./internal-references.md) 把主题知识合并或转换为 references。
 4. 为每个保留的 reference 在目标 `SKILL.md` 增加精确读取条件；需要联合理解时增加组合读取条件。
 5. 合并重复主题，解决文件名和权威结论冲突；证据不足或用户规则冲突时停止相关项并列入待确认。
 6. 更新所有受影响链接。确认旧 skill 的保留内容和链接均已处理后，才删除旧目录。
-7. 验证目标 skill 的 frontmatter、完整路由、相对路径，以及工作树中不存在意外修改。
+7. 验证目标 skill 的 frontmatter、完整路由、相对路径，以及工作树中不存在意外修改；目标为 `ctx-other` 时额外验证 description 覆盖全部稳定主题信号。
 
 可以一次迁移一个分类，不要求所有分类同时迁移。迁移期间不得在新旧位置保留同一内容的两个权威副本。
 

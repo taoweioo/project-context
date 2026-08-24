@@ -100,6 +100,8 @@
 
 `other` 是分类体系的最终兜底，不是证据不足、规则冲突、临时内容或省略分类判断的默认去向。内容只要能归入 `project`、`architecture`、`modules`、`capabilities`、`contracts`、`integrations` 或 `policies`，就不得写入 `other`。
 
+由于 `other` 内部主题没有共同加载原因，其 `SKILL.md` description 必须按 [结构规则](./template.md) 覆盖当前全部 references 的稳定主题信号，并随 reference 变化同步维护。
+
 固定路径和名称：`.agents/skills/ctx-other/SKILL.md`、`ctx-other`。
 
 ## 分类判断顺序
@@ -135,10 +137,12 @@
 
 ## 旧结构兼容
 
-旧版项目可能存在 `.agents/skills/ctx-<分类标识>-<主题>/SKILL.md`：
+旧版项目可能存在 `.agents/skills/ctx-<分类标识>-<主题>/SKILL.md`。旧结构识别必须同时满足：分类标识属于本文件定义的固定分类、主题非空，并且目录名不等于 `ctx-project-baseline`。
 
 - 维护和审计时仍将其视为有效范围并读取，不因采用新规则自动移动或删除。
 - 不再按旧结构新建顶层 skill，也不向不匹配当前归属的旧 skill 继续扩张内容。
+- `ctx-project-baseline` 是 `project` 的规范入口，必须从旧结构识别中排除；其他 `ctx-project-<主题>` 的迁移目标固定为 `ctx-project-baseline`。
+- 非 `project` 旧 skill 的迁移目标为 `ctx-<分类标识>`。
 - 同分类的旧 skill 是合并到分类级 skill 的结构调整候选；实际迁移必须进入 [结构调整规则](./structural-changes.md) 并获得用户确认。
 - 迁移完成前，避免在新旧位置复制同一权威内容；无法确定新旧权威位置时列入待确认。
 

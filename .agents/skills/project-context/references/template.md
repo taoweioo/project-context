@@ -8,7 +8,7 @@
 
 | 内容 | 位置 | 适用条件 |
 | --- | --- | --- |
-| 分类 skill 的触发条件 | `SKILL.md` frontmatter 的 `description` | 概括该分类覆盖的任务和必要的排除范围，不枚举所有 reference。 |
+| 分类 skill 的触发条件 | `SKILL.md` frontmatter 的 `description` | 通常概括该分类覆盖的任务和必要排除范围；`ctx-other` 还必须覆盖当前 references 的稳定主题信号。 |
 | 分类职责、共同约束和高价值入口 | `SKILL.md` 正文 | 每次使用该分类都需要，且能够用简短、独立条目表达。 |
 | reference 语义路由 | `SKILL.md` 正文 | 列出每个 reference 的任务或代码信号、相对路径和组合读取条件。 |
 | 特定主题或子任务知识 | `references/` | 只在路由条件匹配时读取，不应默认全部加载。 |
@@ -54,6 +54,15 @@ description: 当修改项目的跨模块前端运行时边界、路由、渲染�
 ```
 
 只有确有必要时才增加 `不负责范围`、`关键入口与对象`、`用户明确规则`、`相关分类` 和 `待确认事项`；不保留空标题。
+
+## ctx-other 触发特例
+
+`ctx-other` 没有统一领域触发范围，不能只使用“其他前端知识”或“无法分类的内容”等宽泛 description。其 frontmatter `description` 必须同时包含：
+
+- `other` 的兜底边界和必要排除范围；
+- 当前每个 reference 的稳定任务、领域词或代码信号的简短并集，不写文件名或临时实现细节。
+
+新增、删除、重命名 reference，或 reference 的读取条件发生实质变化时，必须同步更新 description 和“按需读取”。若当前主题信号无法在保持准确的前提下简短表达，应重新分类或将分类体系扩展列为待确认，不能退化成无边界的宽泛 description。
 
 ## 路由要求
 

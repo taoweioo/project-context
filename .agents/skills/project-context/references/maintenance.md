@@ -4,7 +4,7 @@
 
 ## 范围
 
-只维护直接位于 `.agents/skills/` 下的 `ctx-*` skill 及其内部资源，包括尚未迁移的旧版 `ctx-<分类>-<主题>`。不修改 `project-context`、非 `ctx-*` skill、项目代码、配置、Git 历史或 `docs/`。
+只维护直接位于 `.agents/skills/` 下的 `ctx-*` skill 及其内部资源，包括尚未迁移的旧版 `ctx-<分类>-<主题>`；规范入口 `ctx-project-baseline` 不属于旧结构。不修改 `project-context`、非 `ctx-*` skill、项目代码、配置、Git 历史或 `docs/`。
 
 ## 确定维护范围和候选内容
 
@@ -24,7 +24,7 @@
 1. 将每项候选内容交给 [选择规则](./selection.md)，取得最终状态、固定分类、目标 skill、目标文件和所需按需规则。
 2. 目标分类 skill 不存在时，使用 [分类规则](./taxonomy.md) 的固定路径和名称，并按 [结构规则](./template.md) 创建最小 `SKILL.md`；不预建没有保留内容的分类。
 3. 对“新增”“更新”或普通内容“删除”结果，只修改选择结果指定的 `SKILL.md` 或内部 resource。
-4. 内容应进入 reference 时，读取 [内部 reference 规则](./internal-references.md)。新增、重命名或删除 reference 必须在同一次变更中同步更新 `SKILL.md` 的语义路由。
+4. 内容应进入 reference 时，读取 [内部 reference 规则](./internal-references.md)。新增、重命名或删除 reference 必须在同一次变更中同步更新 `SKILL.md` 的语义路由；目标为 `ctx-other` 时，还要同步更新 frontmatter `description` 的稳定主题信号。
 5. 普通更新指向尚未迁移的旧 skill 时，只更新其原有权威主题，不借机扩张其他主题；合并到分类级 skill 必须进入结构调整。
 6. 需要删除、拆分、合并、重命名、移动或整理已有 skill 或内部 resource 时，读取 [结构调整规则](./structural-changes.md)，先输出计划并等待用户确认。
 

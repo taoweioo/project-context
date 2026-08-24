@@ -44,13 +44,13 @@
 - 可识别的任务、领域词或代码信号；
 - 必要时的组合读取条件。
 
-只有文件列表或“需要时读取”不构成有效路由。新增、重命名、移动或删除 reference 时，路由项必须作为同一次变更同步处理。
+只有文件列表或“需要时读取”不构成有效路由。新增、重命名、移动或删除 reference 时，路由项必须作为同一次变更同步处理。所属 skill 为 `ctx-other` 时，还必须同步更新 frontmatter `description` 对当前全部 reference 稳定主题信号的覆盖。
 
 reference 内部不要求固定章节。按内容需要使用“适用任务”“流程 / 决策”“关键约束”“证据来源”和“待确认事项”，不保留空标题。
 
 ## 维护与审计
 
-- 更新 `SKILL.md` 的共同约束时，检查相关 reference 是否冲突；更新 reference 时检查路由条件是否仍准确。
+- 更新 `SKILL.md` 的共同约束时，检查相关 reference 是否冲突；更新 reference 时检查路由条件是否仍准确，并为 `ctx-other` 检查 description 是否仍完整覆盖。
 - 重复执行且必须确定结果的操作应评估 `scripts/`，不要伪装成 reference。
 - 会成为交付物的模板、图片或代码骨架应评估 `assets/`，不要作为 instructions 加载。
 - 移动、重命名、拆分、合并或删除 reference 属于结构调整，按 [结构调整规则](./structural-changes.md) 先规划并等待确认。

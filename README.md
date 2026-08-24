@@ -40,6 +40,8 @@ npx skills update project-context -p
 
 每个固定分类最多对应一个顶层 skill；只有存在通过长期保留判断的内容时才创建。`ctx-other` 只承载已确认需要保留、但经过职责拆分和主要加载原因判断后仍不属于现有分类的内容。旧版 `ctx-<分类>-<主题>` 可以继续读取，并通过用户确认的结构调整逐类迁移。
 
+`ctx-other` 没有统一领域触发范围，因此它的 frontmatter `description` 必须简短覆盖当前全部 references 的稳定主题信号，并在 reference 变化时同步更新。旧结构迁移时，`ctx-project-baseline` 始终视为规范入口，不得误判为 `ctx-project-<主题>`；其他 `project` 旧 skill 统一迁入该入口。
+
 ### SKILL.md 是语义路由入口
 
 分类级 `SKILL.md` 包含触发边界、负责范围、分类共同约束和内部 reference 索引。索引必须说明“什么任务或代码信号读取哪个文件”，不能只是文件名列表。

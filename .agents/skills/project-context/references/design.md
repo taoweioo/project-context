@@ -106,6 +106,8 @@ references/
 - `taxonomy.md` 定义固定分类和分类级名称，不判断内容价值。
 - 每个固定分类最多创建一个顶层 skill；不按页面、功能、文件或主题创建顶层 skill。
 - 已确认需要保留的内容必须得到分类意见；无法归入其他固定分类时使用 `ctx-other`，待确认只保留给证据、规则、用户意图或权威位置冲突。
+- `ctx-other` 的 description 必须覆盖当前全部 references 的稳定主题信号，并随 reference 变化同步维护。
+- 旧结构识别必须排除规范入口 `ctx-project-baseline`；`project` 旧主题级 skill 的迁移目标固定为该入口。
 - `template.md` 要求 `SKILL.md` 路由每个内部 reference，并提供可识别的读取条件。
 - `internal-references.md` 不判断内容是否沉淀，只处理分类内按需知识。
 - `structural-changes.md` 只在确认后执行合并、移动、删除等结构变化。
