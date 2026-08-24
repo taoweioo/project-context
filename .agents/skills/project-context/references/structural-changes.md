@@ -4,7 +4,7 @@
 
 ## 范围
 
-只调整直接位于 `.agents/skills/` 下的 `ctx-*` 目录及其内部文件。不调整 `project-context`、非 `ctx-*` skill、项目代码、配置、Git 历史或 `docs/`。固定的 `ctx-project-baseline` 只允许内容维护。
+只调整直接位于 `.agents/skills/` 下的 `ctx-*` 目录及其内部文件。不调整 `project-context`、非 `ctx-*` skill、项目代码、配置、Git 历史或 `docs/`。已存在的 `ctx-project-baseline` 不得删除、拆分、合并、重命名或移动；首次创建由维护流程直接执行。
 
 ## 计划与确认
 

@@ -22,10 +22,11 @@
 ## 选择和执行
 
 1. 将每项候选内容交给 [选择规则](./selection.md)，取得最终状态、目标位置和所需的按需规则。
-2. 对“新增”“更新”或普通内容“删除”结果，只修改目标 `ctx-*/SKILL.md`、已存在的内部 resource 或 `ctx-project-baseline/SKILL.md`。
-3. 新建 skill 时，执行 `selection.md` 已确定的 `taxonomy.md` 和 `template.md` 结果。
-4. 内容复杂或用户明确维护内部 reference 时，按需读取 [内部 reference 规则](./internal-references.md)，再执行通过准入的结果。
-5. 需要删除、拆分、合并、重命名、移动或整理已有 skill 或内部 resource 时，读取 [结构调整规则](./structural-changes.md)，先输出计划并等待用户确认。
+2. 选择结果指向 `ctx-project-baseline` 且目标不存在时，使用 [分类规则](./taxonomy.md) 定义的固定路径和名称，并按 [结构规则](./template.md) 创建最小 `SKILL.md`。首次创建 baseline 不进入结构调整流程。
+3. 对“新增”“更新”或普通内容“删除”结果，只修改目标 `ctx-*/SKILL.md`、已存在的内部 resource 或 `ctx-project-baseline/SKILL.md`。
+4. 新建其他 skill 时，执行 `selection.md` 已确定的 `taxonomy.md` 和 `template.md` 结果。
+5. 内容复杂或用户明确维护内部 reference 时，按需读取 [内部 reference 规则](./internal-references.md)，再执行通过准入的结果。
+6. 需要删除、拆分、合并、重命名、移动或整理已有 skill 或内部 resource 时，读取 [结构调整规则](./structural-changes.md)，先输出计划并等待用户确认。
 
 “保持不变”和“跳过”不修改文件；“待确认”在获得足够证据或用户决定前不执行。保留工作树中的用户已有改动，只修改本次选择结果直接涉及的内容。
 
