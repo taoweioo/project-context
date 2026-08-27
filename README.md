@@ -42,6 +42,24 @@ npx skills update project-context -p
 
 `ctx-other` 没有统一领域触发范围，因此它的 frontmatter `description` 必须简短覆盖当前全部 references 的稳定主题信号，并在 reference 变化时同步更新。旧结构迁移时，`ctx-project-baseline` 始终视为规范入口，不得误判为 `ctx-project-<主题>`；其他 `project` 旧 skill 统一迁入该入口。
 
+### 架构主线
+
+分类目录保持同级，但架构相关知识具有明确的语义层级：
+
+```text
+ctx-project-baseline
+项目定位、工程事实和长期约束
+        ↓ 约束并解释
+ctx-architecture
+当前架构、目标架构、演进路径和决策约束
+        ↓ 具体化
+modules / capabilities / contracts / integrations / policies
+```
+
+`ctx-project-baseline` 回答项目是什么以及哪些长期前提限制架构选择；`ctx-architecture` 回答系统现在如何组织、准备往哪里演进以及迁移期间遵循什么原则。两者同时存在时，通过分类级入口的 `相关分类` 表明上下游关系，但不跨分类复制内容，也不直接依赖对方的内部 reference。
+
+架构上下文必须区分代码和配置能够证明的当前状态，以及由用户说明、项目指令或已确认方案支持的目标状态。存在演进证据时，同时记录迁移路径和决策约束；没有可靠证据时不推测目标、不创建空章节。
+
 ### SKILL.md 是语义路由入口
 
 分类级 `SKILL.md` 包含触发边界、负责范围、分类共同约束和内部 reference 索引。索引必须说明“什么任务或代码信号读取哪个文件”，不能只是文件名列表。
@@ -68,6 +86,7 @@ Codex 只读取与当前任务匹配的 reference；任务跨越多个主题时�
 ## 核心原则
 
 - 每个固定分类最多一个顶层 `ctx-*` skill，不按页面、功能、文件或代码目录创建顶层 skill。
+- `ctx-project-baseline` 是架构的上游依据，`ctx-architecture` 是运行时设计和演进方向的展开；层级不改变目录同级结构。
 - `SKILL.md` 保留分类共同约束并负责路由；reference 保存分类内按需主题知识。
 - 已有职责匹配的分类 skill 或 reference 优先更新，不创建重复位置。
 - 已确认需要保留的内容必须给出分类意见；无法归入现有分类时使用 `ctx-other`，不因分类困难长期待确认。

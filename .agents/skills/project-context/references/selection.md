@@ -49,6 +49,7 @@
 
 - 分类内每次使用都需要的职责、共同约束和高价值入口，写入 `SKILL.md`。
 - 仅特定任务需要的主题知识，读取 [内部 reference 规则](./internal-references.md) 确定目标 reference；已有匹配 reference 时优先更新。
+- 目标为 `ctx-architecture` 时，选择结果必须标明内容属于当前架构、目标架构、演进路径或决策约束，并记录可用的上游项目基线依据；同一主题存在当前与目标状态时不得混写。
 - 新建、重命名或删除 reference 时，选择结果必须同时包含 `SKILL.md` 中对应的语义路由项。
 - 目标为 `ctx-other` 时，reference 或其读取条件的变化还必须包含 frontmatter `description` 的同步更新。
 - 不为避免 reference 而把大量主题知识堆入分类级 `SKILL.md`。

@@ -24,9 +24,10 @@
 1. 将每项候选内容交给 [选择规则](./selection.md)，取得最终状态、固定分类、目标 skill、目标文件和所需按需规则。
 2. 目标分类 skill 不存在时，使用 [分类规则](./taxonomy.md) 的固定路径和名称，并按 [结构规则](./template.md) 创建最小 `SKILL.md`；不预建没有保留内容的分类。
 3. 对“新增”“更新”或普通内容“删除”结果，只修改选择结果指定的 `SKILL.md` 或内部 resource。
-4. 内容应进入 reference 时，读取 [内部 reference 规则](./internal-references.md)。新增、重命名或删除 reference 必须在同一次变更中同步更新 `SKILL.md` 的语义路由；目标为 `ctx-other` 时，还要同步更新 frontmatter `description` 的稳定主题信号。
-5. 普通更新指向尚未迁移的旧 skill 时，只更新其原有权威主题，不借机扩张其他主题；合并到分类级 skill 必须进入结构调整。
-6. 需要删除、拆分、合并、重命名、移动或整理已有 skill 或内部 resource 时，读取 [结构调整规则](./structural-changes.md)，先输出计划并等待用户确认。
+4. 创建或更新 `ctx-project-baseline`、`ctx-architecture` 时，按 `template.md` 保持架构语义层级：两个 skill 同时存在才同步分类级入口关系；架构内容区分当前状态、目标状态、演进路径和决策约束，不跨分类复制依据。
+5. 内容应进入 reference 时，读取 [内部 reference 规则](./internal-references.md)。新增、重命名或删除 reference 必须在同一次变更中同步更新 `SKILL.md` 的语义路由；目标为 `ctx-other` 时，还要同步更新 frontmatter `description` 的稳定主题信号。
+6. 普通更新指向尚未迁移的旧 skill 时，只更新其原有权威主题，不借机扩张其他主题；合并到分类级 skill 必须进入结构调整。
+7. 需要删除、拆分、合并、重命名、移动或整理已有 skill 或内部 resource 时，读取 [结构调整规则](./structural-changes.md)，先输出计划并等待用户确认。
 
 “保持不变”和“跳过”不修改文件；“待确认”在获得足够证据或用户决定前不执行。保留工作树中的用户已有改动，只修改本次选择结果直接涉及的内容。
 

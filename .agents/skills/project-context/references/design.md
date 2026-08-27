@@ -20,6 +20,8 @@
 
 没有通过长期保留判断的分类不创建空 skill。`ctx-other` 只兜底已经确认需要保留、但经过职责拆分和主要加载原因判断后仍不属于现有分类的内容；分类困难不作为长期待确认状态。旧版 `ctx-<分类>-<主题>` 仍可读取和普通维护，但不再新建；它们通过用户确认的结构调整逐类迁移。
 
+分类目录保持同级，但架构知识具有稳定的语义层级：`ctx-project-baseline` 保存项目定位、工程事实和长期约束，作为上游依据；`ctx-architecture` 保存当前架构、目标架构、演进路径和决策约束，作为这些依据在跨模块运行时设计上的展开；其他分类再保存局部实现知识。层级通过分类职责、分类级入口关系和证据追溯表达，不通过目录嵌套或跨分类复制表达。
+
 ## 用户场景
 
 `project-context` 围绕初始化、维护和审计三类用户请求设计。初始化和维护最终都通过 `maintenance.md` 落地变更；审计保持只读。用户只要求分析或规划时，仍进入对应判断路径，但不执行文件修改。
@@ -104,11 +106,13 @@ references/
 - `maintenance.md` 是所有 `ctx-*` 及其内部资源变更的唯一入口。
 - `selection.md` 是候选内容保留状态、分类和去向的唯一选择入口。
 - `taxonomy.md` 定义固定分类和分类级名称，不判断内容价值。
+- `taxonomy.md` 同时定义 `ctx-project-baseline → ctx-architecture → 其他分类` 的架构语义层级；各分类仍是物理同级的顶层 skill。
 - 每个固定分类最多创建一个顶层 skill；不按页面、功能、文件或主题创建顶层 skill。
 - 已确认需要保留的内容必须得到分类意见；无法归入其他固定分类时使用 `ctx-other`，待确认只保留给证据、规则、用户意图或权威位置冲突。
 - `ctx-other` 的 description 必须覆盖当前全部 references 的稳定主题信号，并随 reference 变化同步维护。
 - 旧结构识别必须排除规范入口 `ctx-project-baseline`；`project` 旧主题级 skill 的迁移目标固定为该入口。
 - `template.md` 要求 `SKILL.md` 路由每个内部 reference，并提供可识别的读取条件。
+- `template.md` 要求 baseline 与 architecture 同时存在时显式建立分类级入口关系，并要求 architecture 区分有证据的当前状态、目标状态、演进路径和决策约束。
 - `internal-references.md` 不判断内容是否沉淀，只处理分类内按需知识。
 - `structural-changes.md` 只在确认后执行合并、移动、删除等结构变化。
 - `initialization.md` 不直接修改 `ctx-*`；`audit.md` 只检查和报告。
