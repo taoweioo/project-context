@@ -37,7 +37,7 @@
   → selection.md：决定保留状态、固定分类和目标位置
   → taxonomy.md：确定分类级固定名称
   → template.md / internal-references.md：建立入口、语义路由和按需内容
-  → 执行选择结果并汇总
+  → 执行选择结果、完成检查并汇总
 ```
 
 用户只要求分析或规划时，沿用相同判断路径，但不创建或修改文件。
@@ -64,8 +64,9 @@
    └─ 合并、移动、删除等结构变化
       → structural-changes.md：输出计划 → 用户确认 → 执行
 
-4. 输出维护结果
-   → maintenance.md：汇总内容、路由、证据和未执行项
+4. 完成检查并输出维护结果
+   → maintenance.md：核对变更范围、入口、路由、证据和权威位置
+   → 汇总实际变更、检查结果和未执行项
 ```
 
 ### 审计
@@ -101,19 +102,18 @@ references/
 
 不增加通用执行文件。只有具备独立读取原因的特定主题知识才保留为按需文件。
 
-## 设计约束
+## 规则归属
 
-- `maintenance.md` 是所有 `ctx-*` 及其内部资源变更的唯一入口。
-- `selection.md` 是候选内容保留状态、分类和去向的唯一选择入口。
-- `taxonomy.md` 定义固定分类和分类级名称，不判断内容价值。
-- `taxonomy.md` 同时定义 `ctx-project-baseline → ctx-architecture → 其他分类` 的架构语义层级；各分类仍是物理同级的顶层 skill。
-- 每个固定分类最多创建一个顶层 skill；不按页面、功能、文件或主题创建顶层 skill。
-- 已确认需要保留的内容必须得到分类意见；无法归入其他固定分类时使用 `ctx-other`，待确认只保留给证据、规则、用户意图或权威位置冲突。
-- `ctx-other` 的 description 必须覆盖当前全部 references 的稳定主题信号，并随 reference 变化同步维护。
-- 旧结构识别必须排除规范入口 `ctx-project-baseline`；`project` 旧主题级 skill 的迁移目标固定为该入口。
-- `template.md` 要求 `SKILL.md` 路由每个内部 reference，并提供可识别的读取条件。
-- `template.md` 要求 baseline 与 architecture 同时存在时显式建立分类级入口关系，并要求 architecture 区分有证据的当前状态、目标状态、演进路径和决策约束。
-- `internal-references.md` 不判断内容是否沉淀，只处理分类内按需知识。
-- `structural-changes.md` 只在确认后执行合并、移动、删除等结构变化。
-- `initialization.md` 不直接修改 `ctx-*`；`audit.md` 只检查和报告。
-- 具体规则只由拥有最终判断权的文件定义，其他文件只调用或执行其结果。
+具体规则由下表中的文件定义。流程文件保留调用条件和执行提醒，审计文件保留检查项，不另设判断标准。修改机制时先更新规则所属文件，再核对调用处。
+
+| 规则 | 定义位置 |
+| --- | --- |
+| 保留价值、项目基础保留边界、最终状态和权威位置优先级 | [selection.md](./selection.md) |
+| 分类职责、规范名称、架构语义层级和旧结构识别 | [taxonomy.md](./taxonomy.md) |
+| 入口结构、路由、架构状态表达和 `ctx-other` 触发条件 | [template.md](./template.md) |
+| reference 准入和分类内主题拆分 | [internal-references.md](./internal-references.md) |
+| 结构调整的计划、确认和迁移操作 | [structural-changes.md](./structural-changes.md) |
+| 变更执行、完成检查和结果汇总 | [maintenance.md](./maintenance.md) |
+| 初始化候选生成；只读审计及问题分级 | [initialization.md](./initialization.md)、[audit.md](./audit.md) |
+
+`initialization.md` 不直接修改 `ctx-*`，`audit.md` 只检查和报告。所有变更仍通过 `maintenance.md` 执行。

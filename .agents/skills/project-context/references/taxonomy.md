@@ -48,7 +48,7 @@ ctx-modules / ctx-capabilities / ctx-contracts / ctx-integrations / ctx-policies
 
 其中会限制架构选择的项目定位、技术栈、构建方式和工程约定构成 `architecture` 的上游基线；这里只记录约束本身，不重复由约束推导出的架构决策。
 
-适合记录：技术栈、包管理工具、常用命令、前端源码根目录、目录约定、环境变量入口、构建配置、Lint、格式化、测试体系、全局样式体系、设计令牌和组件库使用约定。
+归属本类的主题包括：技术栈、包管理工具、常用命令、前端源码根目录、目录约定、环境变量入口、构建配置、Lint、格式化、测试体系、全局样式体系、设计令牌和组件库使用约定。此清单只用于判断归属，是否保留按 [选择规则](./selection.md) 的项目基础边界判断。
 
 不放入：路由运行时策略、全局缓存机制、跨模块状态流或第三方服务特有约束。
 
@@ -120,7 +120,7 @@ ctx-modules / ctx-capabilities / ctx-contracts / ctx-integrations / ctx-policies
 
 `other` 是分类体系的最终兜底，不是证据不足、规则冲突、临时内容或省略分类判断的默认去向。内容只要能归入 `project`、`architecture`、`modules`、`capabilities`、`contracts`、`integrations` 或 `policies`，就不得写入 `other`。
 
-由于 `other` 内部主题没有共同加载原因，其 `SKILL.md` description 必须按 [结构规则](./template.md) 覆盖当前全部 references 的稳定主题信号，并随 reference 变化同步维护。
+`other` 的入口触发要求见 [结构规则](./template.md) 的“ctx-other 触发特例”。
 
 固定路径和名称：`.agents/skills/ctx-other/SKILL.md`、`ctx-other`。
 
@@ -165,6 +165,8 @@ ctx-modules / ctx-capabilities / ctx-contracts / ctx-integrations / ctx-policies
 - 非 `project` 旧 skill 的迁移目标为 `ctx-<分类标识>`。
 - 同分类的旧 skill 是合并到分类级 skill 的结构调整候选；实际迁移必须进入 [结构调整规则](./structural-changes.md) 并获得用户确认。
 - 迁移完成前，避免在新旧位置复制同一权威内容；无法确定新旧权威位置时列入待确认。
+
+规范名称用于首次创建和迁移目标，不覆盖普通更新的既有权威位置。新旧记录之间的选择顺序统一由 [选择规则](./selection.md) 决定。
 
 固定英文分类标识不得通过普通项目维护新增、修改或复用。未覆盖但已确认需要保留的主题归入 `other`；修改分类体系只由 `project-context` 作者维护。
 
